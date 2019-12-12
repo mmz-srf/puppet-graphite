@@ -110,6 +110,13 @@ class graphite::params {
           $extra_pip_install_options = undef
         }
 
+        /buster/: {
+          $apache_24                 = true
+          $graphitepkgs              = union($common_os_pkgs, ['python-cairo',])
+          $libpath                   = "/usr/lib/python${pyver}/dist-packages"
+          $extra_pip_install_options = [{'--no-binary' => ':all:'}]
+        }
+
         /xenial|bionic/: {
           $apache_24                 = true
           $graphitepkgs              = union($common_os_pkgs, ['python-cairo',])
